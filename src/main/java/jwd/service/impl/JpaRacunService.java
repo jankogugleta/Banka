@@ -75,7 +75,6 @@ public class JpaRacunService implements RacunService{
 		double ukupnaCena = iznos + kamata;
 		
 		if (racunUplatioca.getStanje() > ukupnaCena) {
-			double novoStanje;
 			racunUplatioca.setStanje(racunUplatioca.getStanje() - ukupnaCena);
 			save(racunUplatioca);
 			

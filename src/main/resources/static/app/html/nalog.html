@@ -1,0 +1,25 @@
+<div ng-controller="NalogCtrl">
+<div class="row">
+<form>
+	<div class="form-group"">
+	<label>Broj racuna uplatioca</label>
+	<input class="form-control" ng-model="nalog.uplatioc">
+	</div>
+	
+	<div class="form-group">
+	<label>Broj racuna primaoca</label>
+	<input class="form-control" ng-model="nalog.primaoc">
+	</div>
+	
+	
+	<div class="form-group">
+	<label>Iznos</label>
+	<input class="form-control" ng-model="nalog.iznos">
+	</div>
+	
+	
+	<button class="btn btn-primary" ng-click="prenesi()">Prenesi</button>
+	
+</form>
+</div>
+</div>

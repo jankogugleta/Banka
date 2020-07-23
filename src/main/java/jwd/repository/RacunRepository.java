@@ -23,6 +23,6 @@ public interface RacunRepository extends JpaRepository<Racun, Long>{
 						 @Param("id") Long id,
 						  Pageable pageRequest);
 
-	Racun findByBrojRacuna(int u);;
+	Racun findByBrojRacuna(int uplatioc);;
 
 }

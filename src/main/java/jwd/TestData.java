@@ -36,9 +36,9 @@ public class TestData {
 		TipRacuna s = new TipRacuna("tip2", 15, w);
 		TipRacuna d = new TipRacuna("tip3", 20, w);
 		
-		Racun z = new Racun("Janko", "12546", 478, 300, a, q);
-		Racun x = new Racun("Marko", "365", 365, 500, s, w);
-		Racun c = new Racun("Zika", "7995", 1224, 600, d, w);
+		Racun z = new Racun("Janko", "12546", 111, 300, a, q);
+		Racun x = new Racun("Marko", "365", 222, 500, s, w);
+		Racun c = new Racun("Zika", "7995", 333, 600, d, w);
 		
 		bs.save(q);
 		bs.save(w);

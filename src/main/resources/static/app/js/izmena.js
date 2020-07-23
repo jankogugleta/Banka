@@ -1,8 +1,7 @@
 var myApp = angular.module('myApp');
 
 myApp.controller("IzmenaCtrl", function($scope, $http, $routeParams, $location) {
-	$scope.auto = {};
-	$scope.kompanije = []
+	$scope.racun = {};
 		
 		
 	var urlA = "/api/racuni/" + $routeParams.id;
@@ -23,6 +22,7 @@ myApp.controller("IzmenaCtrl", function($scope, $http, $routeParams, $location) 
 	}
 	
 	$scope.uradiIzmenu = function(){
+		console.log($scope.racun)
 		$http.put(urlA, $scope.racun).then(
 			function success(){
 			$location.path("/prikaz")

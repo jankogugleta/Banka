@@ -16,6 +16,9 @@ public class JpaRacunService implements RacunService{
 	@Autowired
 	private RacunRepository rr;
 	
+	@Autowired
+	private JpaBankaService bs;
+	
 	@Override
 	public Racun findOne(Long id) {
 		// TODO Auto-generated method stub
@@ -49,18 +52,45 @@ public class JpaRacunService implements RacunService{
 	}
 
 	@Override
-	public void nalog(Integer uplatioc, Integer primaoc, Double iznos) {
-		Racun u = null;
-		Racun p = null;
+	public boolean nalog(Integer uplatioc, Integer primaoc, Double iznos) {
+		boolean uspeh = false;
+		Racun racunUplatioca = null;
+		Racun racunPrimaoca = null;
 		
 		if(rr.findByBrojRacuna(uplatioc) != null) {
-			u  = rr.findByBrojRacuna(uplatioc);
+			racunUplatioca  = rr.findByBrojRacuna(uplatioc);
 		}
 		if(rr.findByBrojRacuna(primaoc) != null) {
-			p  = rr.findByBrojRacuna(primaoc);
+			racunPrimaoca  = rr.findByBrojRacuna(primaoc);
+		}
+		if (racunPrimaoca== null || racunUplatioca== null) {
+			return uspeh;
+		}
+		System.out.println("-----");
+		System.out.println(racunUplatioca.getStanje());
+		System.out.println(racunPrimaoca.getStanje());
+		System.out.println("-----");
+		
+		Double kamata = racunUplatioca.getTipRacuna().getProvizija()/100 * iznos;
+		double ukupnaCena = iznos + kamata;
+		
+		if (racunUplatioca.getStanje() > ukupnaCena) {
+			double novoStanje;
+			racunUplatioca.setStanje(racunUplatioca.getStanje() - ukupnaCena);
+			save(racunUplatioca);
+			
+			racunPrimaoca.setStanje(racunPrimaoca.getStanje() + iznos);
+			save(racunPrimaoca);
+			
+			Banka bankaUplatioca = bs.findOne(racunUplatioca.getBanka().getId());
+			bankaUplatioca.setSredstvaBanke(bankaUplatioca.getSredstvaBanke() + kamata);
+			bs.save(bankaUplatioca);
+			
+			uspeh = true;
+			return uspeh;
 		}
 		
-		//System.out.println(u.getId() + "    " + p.getImePrezime());
+		return uspeh;
 	}
 
 }

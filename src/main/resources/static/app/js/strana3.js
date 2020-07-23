@@ -15,7 +15,7 @@ myApp.controller("NalogCtrl", function($scope, $http, $location) {
 		console.log($scope.nalog.uplatioc, $scope.nalog.primaoc, $scope.nalog.iznos )
 		
 		$http.get("/api/racuni/nalog", config).then(
-		function sucess(res) {
+		function sucess() {
 			$location.path("/prikaz")
 			
 		},

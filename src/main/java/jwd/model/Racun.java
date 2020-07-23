@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 public class Racun {
@@ -16,7 +17,7 @@ public class Racun {
 	private String imePrezime;
 	@Column
 	private String jmbg;
-	@Column
+	@Column(unique = true)
 	private int brojRacuna;
 	@Column
 	private double stanje;

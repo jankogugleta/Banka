@@ -34,7 +34,6 @@ public class ApiRacunController {
 	private RacunService rs;
 	
 	//*****GETALL*****
-	
 		@RequestMapping(method=RequestMethod.GET)
 		ResponseEntity<List<RacunDto>> getAll(
 				@RequestParam(required=false) String jmbg,
@@ -62,7 +61,6 @@ public class ApiRacunController {
 
 
 	//*****GETONE*****
-
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 		ResponseEntity<RacunDto> getOne(@PathVariable Long id){
 			Racun f = rs.findOne(id);
@@ -85,22 +83,22 @@ public class ApiRacunController {
 			
 		}
 	
-	//*****Nalog*****
-
-			@RequestMapping(value = "/nalog", method = RequestMethod.GET)
-				ResponseEntity<RacunDto> nalog(@RequestParam(required=false) String uplatioc ,
-											   @RequestParam(required=false) String primaoc ,
-										 	   @RequestParam(required=false) String iznos){
-					
-					
-					//rs.nalog(uplatioc, primaoc, iznos);
-					return null;
-					
+	//*****Nalog za prenos*****
+	@RequestMapping(value = "/nalog", method = RequestMethod.GET)
+		ResponseEntity<Boolean> nalog(@RequestParam(required = false) Integer uplatioc,
+									  @RequestParam(required = false) Integer primaoc,
+									  @RequestParam(required = false) Double iznos) {
+	
+			boolean uspeh = rs.nalog(uplatioc, primaoc, iznos);
+				
+			if (uspeh == false) {
+				return new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
+			} else {
+				return new ResponseEntity<Boolean>(HttpStatus.OK);
 			}	
+		}	
 					
-
 	//*****EDIT*****
-
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 		ResponseEntity<RacunDto> edit(@RequestBody RacunDto eddited,
 										 @PathVariable Long id){
@@ -116,7 +114,6 @@ public class ApiRacunController {
 
 
 	//*****DELETE*****
-
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 		ResponseEntity<RacunDto> delete(@PathVariable Long id){
 			

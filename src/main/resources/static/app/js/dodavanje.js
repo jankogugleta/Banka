@@ -11,7 +11,6 @@ myApp.controller("DodavanjeCtrl", function($scope, $http, $location ) {
 		function succes(res) {
 			$scope.banke = res.data
 			console.log(res.data)
-			nadjiT();
 		}, 
 		function error() {
 			alert("Greska banke")

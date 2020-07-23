@@ -18,16 +18,19 @@ public class JpaBankaService implements BankaService{
 	
 	@Override
 	public Banka findOne(Long id) {
+		// TODO Auto-generated method stub
 		return br.findOne(id);
 	}
 
 	@Override
 	public List<Banka> findAll() {
+		// TODO Auto-generated method stub
 		return br.findAll();
 	}
 
 	@Override
 	public Banka save(Banka banka) {
+		// TODO Auto-generated method stub
 		return br.save(banka);
 	}
 

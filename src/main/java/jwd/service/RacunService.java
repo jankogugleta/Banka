@@ -11,5 +11,5 @@ public interface RacunService {
 	Racun save(Racun racun);
 	void delete(Long id);
 	Page<Racun> search(String jmbg, Long bankaId, int pageNum);
-	void nalog(Integer uplatioc, Integer primaoc, Double iznos);
+	boolean nalog(Integer uplatioc, Integer primaoc, Double iznos);
 }

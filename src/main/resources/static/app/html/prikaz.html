@@ -1,0 +1,55 @@
+<div ng-controller="PrikazCtrl">
+
+<label>Prikazi formu za pretragu</label>
+<input type="checkbox" ng-click="prikazi=!prikazi">
+<div ng-if= "prikazi==true">
+<form>
+	<div class="form-group"">
+	<label>Jmbg</label>
+	<input class="form-control" ng-model="search.jmbg">
+	</div>
+	
+	<div class="form-group">
+	<label>Banka</label>
+	<select class="form-control" ng-model="search.bankaId">
+	<option ng-repeat="x in banke" value="{{x.id}}"> {{x.naziv}}</option>
+	</select>
+	</div>
+	
+	
+	<button ng-click="goToPretraga()">Pretrazi</button>
+	<button ng-click="ponistiPretragu()">ponisti pretragu</button>
+	<button ng-click="ponistiPretragu()">ponisti pretragu</button>
+</form>
+</div>
+ <div style="margin-bottom:10px" class="btn-group float-right">
+			<button ng-disabled="pageNum == 0" ng-click="changePage(-1)" class="btn btn-primary">Predhodna</button>
+			<button ng-disabled="pageNum == totalPages - 1" ng-click="changePage(1)" class="btn btn-primary">Sledeca</button>
+</div>
+<div>
+<table class="table">
+	<thead>
+		<tr>
+		<th>Ime i Prezime</th>
+		<th>JMBG</th>
+		<th>Stanje</th>
+		<th>Broj Racuna</th>
+		<th>Tip Racuna</th>
+		<th>Banka</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="x in racuni">
+		<td>{{x.imePrezime}}</td>
+		<td>{{x.jmbg}}</td>
+		<td>{{x.stanje}}</td>
+		<td>{{x.brojRacuna}}</td>
+		<td>{{x.tipRacunaNaziv}}</td>
+		<td>{{x.bankaNaziv}}</td>
+		<td><button ng-click="goToIzmena(x.id)">Izmeni</button>
+		<button ng-click="potvrdiBrisanje(x.id)">Obrisi</button>
+		</tr>
+	</tbody>
+</table>
+</div>
+</div>
